@@ -1,52 +1,16 @@
-package.q04
-import java.util.*;
+package q04;
+import java.util.Scanner;
 
 public class Main {
-
-    // Function to check prime
-    public static boolean isPrime(int n) {
-        if (n <= 1) return false;
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) return false;
-        }
-        return true;
-    }
-
-    // Function to check perfect number
-    public static boolean isPerfect(int n) {
-        if (n <= 1) return false;
-
-        int sum = 1; // 1 is always a divisor
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                sum += i;
-                if (i != n / i) {
-                    sum += n / i;
-                }
-            }
-        }
-        return sum == n;
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        if(!sc.hasNextInt()) return;
         int n = sc.nextInt();
-
-        for (int i = 0; i < n; i++) {
-            int num = sc.nextInt();
-
-            boolean prime = isPrime(num);
-            boolean perfect = isPerfect(num);
-
-            if (prime && perfect) {
-                System.out.println("Both");
-            } else if (prime) {
-                System.out.println("Prime");
-            } else if (perfect) {
-                System.out.println("Perfect");
-            } else {
-                System.out.println("Neither");
-            }
+        int temp = n, sum = 0, digits = String.valueOf(n).length();
+        while (temp > 0) {
+            sum += Math.pow(temp % 10, digits);
+            temp /= 10;
         }
+        System.out.println(sum == n ? "Yes" : "No");
     }
 }
