@@ -1,23 +1,16 @@
-package.q02
-import java.util.*;
+package q02;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        if(!sc.hasNextInt()) return;
         int n = sc.nextInt();
-
         for (int i = 0; i < n; i++) {
-            int num = 1; // First value in every row
-
+            for (int j = 0; j < n - i - 1; j++) System.out.print(" ");
+            int num = 1;
             for (int j = 0; j <= i; j++) {
-                System.out.print(num);
-
-                // Print space only if it's not the last element
-                if (j < i) {
-                    System.out.print(" ");
-                }
-
-                // Calculate next value using formula
+                System.out.print(num + " ");
                 num = num * (i - j) / (j + 1);
             }
             System.out.println();
