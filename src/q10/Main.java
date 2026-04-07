@@ -1,39 +1,23 @@
-package.q10
+package q10;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        String line = sc.nextLine();
-        String[] tokens = line.split(" ");
-
-        Stack<Integer> stack = new Stack<>();
-
-        for (String token : tokens) {
-            // Check if token is a number
-            if (Character.isDigit(token.charAt(0))) {
-                stack.push(Integer.parseInt(token));
-            } else {
-                int b = stack.pop();
-                int a = stack.pop();
-
-                int result = 0;
-
-                if (token.equals("+")) {
-                    result = a + b;
-                } else if (token.equals("-")) {
-                    result = a - b;
-                } else if (token.equals("*")) {
-                    result = a * b;
-                } else if (token.equals("/")) {
-                    result = a / b; // integer division
+        String exp = sc.nextLine();
+        Stack<Integer> st = new Stack<>();
+        for(String s : exp.split(" ")) {
+            if(s.matches("\\d+")) st.push(Integer.parseInt(s));
+            else {
+                int val1 = st.pop(), val2 = st.pop();
+                switch(s) {
+                    case "+": st.push(val2 + val1); break;
+                    case "-": st.push(val2 - val1); break;
+                    case "*": st.push(val2 * val1); break;
+                    case "/": st.push(val2 / val1); break;
                 }
-
-                stack.push(result);
             }
         }
-
-        System.out.println(stack.pop());
+        System.out.println(st.pop());
     }
 }
