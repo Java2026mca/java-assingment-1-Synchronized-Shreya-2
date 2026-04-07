@@ -1,40 +1,16 @@
-package.q08
-import java.util.*;
+package q08;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-
-        int[] stack = new int[n]; // max size n
-        int top = -1;
-
-        for (int i = 0; i < n; i++) {
-            String op = sc.next();
-
-            if (op.equals("PUSH")) {
-                int x = sc.nextInt();
-                top++;
-                stack[top] = x;
-
-            } else if (op.equals("POP")) {
-                if (top == -1) {
-                    System.out.println("EMPTY");
-                } else {
-                    System.out.println(stack[top]);
-                    top--;
-                }
-
-            } else if (op.equals("PEEK")) {
-                if (top == -1) {
-                    System.out.println("EMPTY");
-                } else {
-                    System.out.println(stack[top]);
-                }
-
-            } else if (op.equals("SIZE")) {
-                System.out.println(top + 1);
-            }
+        int r = sc.nextInt(), c = sc.nextInt();
+        int[][] mat = new int[r][c];
+        for(int i=0; i<r; i++)
+            for(int j=0; j<c; j++) mat[i][j] = sc.nextInt();
+        for(int j=0; j<c; j++) {
+            for(int i=0; i<r; i++) System.out.print(mat[i][j] + " ");
+            System.out.println();
         }
     }
 }
