@@ -1,64 +1,21 @@
-package.q03
-import java.util.*;
+package q03;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-
-        int[][] matrix = new int[n][n];
-
-        int top = 0, bottom = n - 1;
-        int left = 0, right = n - 1;
-        int num = 1;
-
-        // Fill spiral
-        while (top <= bottom && left <= right) {
-
-            // Top row
-            for (int i = left; i <= right; i++) {
-                matrix[top][i] = num++;
-            }
-            top++;
-
-            // Right column
-            for (int i = top; i <= bottom; i++) {
-                matrix[i][right] = num++;
-            }
-            right--;
-
-            // Bottom row
-            if (top <= bottom) {
-                for (int i = right; i >= left; i--) {
-                    matrix[bottom][i] = num++;
-                }
-                bottom--;
-            }
-
-            // Left column
-            if (left <= right) {
-                for (int i = bottom; i >= top; i--) {
-                    matrix[i][left] = num++;
-                }
-                left++;
-            }
+        if(!sc.hasNextInt()) return;
+        int start = sc.nextInt();
+        int end = sc.nextInt();
+        for (int i = start; i <= end; i++) {
+            if (isPrime(i)) System.out.print(i + " ");
         }
-
-        // Print matrix
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(matrix[i][j]);
-                if (j < n - 1) System.out.print(" ");
-            }
-            System.out.println();
+    }
+    public static boolean isPrime(int n) {
+        if (n < 2) return false;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
         }
-
-        // Calculate diagonal sum
-        int diagonalSum = 0;
-        for (int i = 0; i < n; i++) {
-            diagonalSum += matrix[i][i];
-        }
-
-        System.out.println("Diagonal: " + diagonalSum);
+        return true;
     }
 }
