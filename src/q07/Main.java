@@ -1,4 +1,3 @@
-package q07;
 import java.util.Scanner;
 import java.util.Arrays;
 
