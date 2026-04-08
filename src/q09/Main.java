@@ -1,4 +1,3 @@
-package q09;
 import java.util.Scanner;
 
 public class Main {
